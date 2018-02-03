@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>To-DO</title>
+	<link rel="stylesheet" type="text/css" href="toDotest.css">
+</head>
+<body>
+	<div class="header">
+	<h1>To-Do List</h1>
+	<input type="text" id="myTask" placeholder="Write your task...">
+	<button id="addBtn" onclick="createTask()">Add to Task</button>
+	<hr>
+	</div>
+	
+	<ul id="myList">
+		<li>Example 1</li>
+		<li class="checked">Example 2</li>
+		
+	</ul>
+
+	<script type="text/javascript">
+		var myList  = document.getElementsByTagName("li");
+
+		
+		var list = document.querySelector("ul");
+			list.addEventListener("click",function(){
+				var val = document.getElementsByTagName("li").value;
+				alert("pressed on: "+val);
+			});
+
+
+		
+		// myList.addEventListener("click",function(e){
+		// 	e.target.textContent = "presed on: "+e.detail);
+		// },false);
+
+
+
+
+
+
+		for (var i = 0; i < myList.length; i++) {
+			var delBtn = document.createElement("button");
+			var txtDelete = document.createTextNode("Delete");
+			
+			delBtn.appendChild(txtDelete);
+			delBtn.className = "close";
+			myList[i].appendChild(delBtn);
+		}
+
+		var close = document.getElementsByClassName("close");
+		var i;
+		for (i = 0; i < close.length; i++) {
+		  close[i].onclick = function() {
+		    var div = this.parentElement;
+		    div.style.display = "none";
+		  }
+		}
+
+
+		// myList.addEventListener("click", function(){
+		// 	document.getElementById("myList").style.text-decoration = "line-through";
+    		
+		// }); 
+
+		// function createTaskNew(){
+		// 	var node = document.createElement("LI");
+		// 	var textNode = document.createTextNode(document.getElementById("myTask").value);
+		// 	node.appendChild(textNode);
+		// 	document.getElementById("myList").appendChild(node);
+		// }
+
+
+		function createTask(){
+			var li = document.createElement("li");
+			var inputValue = document.getElementById("myTask").value;
+			var task = document.createTextNode(inputValue); 
+
+			li.appendChild(task);
+
+			if (inputValue==='') {
+				alert("Task can not be empty!");
+			}
+			else{
+				document.getElementById("myList").appendChild(li);
+			}
+			document.getElementById("myTask").value = '';
+
+			var delBtn = document.createElement("button");
+			var txtDelete =  document.createTextNode("Delete");
+
+			delBtn.className = "close";
+			delBtn.appendChild(txtDelete);
+			li.appendChild(delBtn);
+
+			for (var i = 0; i <close.length; i++) {
+				close[i].onclick = function(){
+					var div = this.parentElement;
+					div.style.display = "none";
+
+				}
+			}
+		}
+		
+
+
+	</script>
+</body>
+</html>
